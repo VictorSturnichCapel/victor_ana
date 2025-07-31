@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Victor <> Ana</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #ffe6f2;
+            color: #b30059;
+            text-align: center;
+            padding: 40px;
+        }
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        .contador {
+            margin: 30px auto;
+            padding: 20px;
+            background: #fff0f5;
+            border-radius: 12px;
+            display: inline-block;
+            box-shadow: 0 2px 8px #f8bbd0;
+        }
+        .tempo {
+            font-size: 1.3em;
+            margin: 10px 0;
+        }
+        .emoji {
+            font-size: 2em;
+        }
+    </style>
+</head>
+<body>
+    <div style="display: flex; justify-content: center; margin-bottom: 25px;">
+        <div style="position: relative; display: inline-block;">
+            <img src="foto.png" 
+                 alt="Casal feliz" 
+                 style="width: 180px; height: 180px; border-radius: 50%; box-shadow: 0 0 30px 5px #ffb6c1; border: 6px solid #fff0f5; animation: pulse 2s infinite;">
+            <span style="position: absolute; bottom: 10px; right: 18px; font-size: 2em; animation: heartBeat 1.2s infinite;">💗</span>
+        </div>
+    </div>
+    <style>
+    @keyframes pulse {
+        0% { box-shadow: 0 0 30px 5px #ffb6c1; }
+        50% { box-shadow: 0 0 50px 15px #ff69b4; }
+        100% { box-shadow: 0 0 30px 5px #ffb6c1; }
+    }
+    @keyframes heartBeat {
+        0%, 100% { transform: scale(1);}
+        20% { transform: scale(1.3);}
+        40% { transform: scale(1);}
+    }
+    </style>
+    <h1>Eu amo muito você! <span class="emoji">💖</span></h1>
+    <p>Ana, você é tudo para mim e sou muito feliz ao seu lado!</p>
+
+    <div class="contador">
+        <div class="tempo">
+            <strong>Estamos juntos há:</strong>
+            <span id="tempoJuntos"></span>
+        </div>
+        <div class="tempo">
+            <strong>Faltam para o nosso casamento:</strong>
+            <span id="tempoCasamento"></span>
+        </div>
+    </div>
+    <p>Nos vimos, mas não nós falamos em algumas ocaciões, mas o destino é implacável não é mesmo? Estou com você na alegria, na tristeza, na dificuldade e em qualquer situação. Te amo aqui, na lua, em outra galáxia ou até enrolar minha cabeça. rsrs<br>Você é a razão do meu sorriso e a luz dos meus dias! 🌟</p>
+    <script>
+        // Defina aqui as datas importantes
+        const dataInicio = new Date('2019-03-09T00:00:00'); // Data que começaram a namorar
+        const dataCasamento = new Date('2026-11-28T18:30:00'); // Data do casamento
+
+        function atualizarContadores() {
+            const agora = new Date();
+
+            // Tempo juntos
+            let diffJuntos = agora - dataInicio;
+            let anos = Math.floor(diffJuntos / (1000 * 60 * 60 * 24 * 365.25));
+            let meses = Math.floor((diffJuntos % (1000 * 60 * 60 * 24 * 365.25)) / (1000 * 60 * 60 * 24 * 30.44));
+            let dias = Math.floor((diffJuntos % (1000 * 60 * 60 * 24 * 30.44)) / (1000 * 60 * 60 * 24));
+            let horas = Math.floor((diffJuntos % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            let minutos = Math.floor((diffJuntos % (1000 * 60 * 60)) / (1000 * 60));
+            let segundos = Math.floor((diffJuntos % (1000 * 60)) / 1000);
+
+            document.getElementById('tempoJuntos').textContent =
+                `${anos} anos, ${meses} meses, ${dias} dias, ${horas}h ${minutos}m ${segundos}s`;
+
+            // Tempo até o casamento
+            let diffCasamento = dataCasamento - agora;
+            if (diffCasamento > 0) {
+                let diasC = Math.floor(diffCasamento / (1000 * 60 * 60 * 24));
+                let horasC = Math.floor((diffCasamento % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                let minutosC = Math.floor((diffCasamento % (1000 * 60 * 60)) / (1000 * 60));
+                let segundosC = Math.floor((diffCasamento % (1000 * 60)) / 1000);
+
+                document.getElementById('tempoCasamento').textContent =
+                    `${diasC} dias, ${horasC}h ${minutosC}m ${segundosC}s`;
+            } else {
+                document.getElementById('tempoCasamento').textContent = "Já estamos casados! 🎉";
+            }
+        }
+
+        setInterval(atualizarContadores, 1000);
+        atualizarContadores();
+    </script>
+</body>
+</html>
